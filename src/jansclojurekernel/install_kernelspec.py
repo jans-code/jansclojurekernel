@@ -1,11 +1,17 @@
 #!/usr/bin/env python
-import os, shutil
+# *_* coding: utf-8 *_*
+
+"""clojure kernel installer helper"""
+
+import os
+import shutil
 from jupyter_client.kernelspec import KernelSpecManager
-json = """{"argv":["python","-m","jansclojurekernel", "-f", "{connection_file}"],
+
+JSON = """{"argv":["python","-m","jansclojurekernel", "-f", "{connection_file}"],
  "display_name":"Clojure"
 }"""
 
-svg = """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+SVG = """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    version="1.1"
    width="300"
@@ -67,23 +73,22 @@ def install_kernelspec():
     print('Creating tmp files...', end="")
     os.mkdir(kerneldir)
 
-    with open(kerneldir + "kernel.json", "w") as f:
-        f.write(json)
+    with open(kerneldir + "kernel.json", "w") as file:
+        file.write(JSON)
 
-    with open(kerneldir + "logo-svg.svg", "w") as f:
-        f.write(svg)
-        
+    with open(kerneldir + "logo-svg.svg", "w") as file:
+        file.write(SVG)
+
     print(' Done!')
     print('Installing Jupyter kernel...', end="")
-    
+
     ksm = KernelSpecManager()
     ksm.install_kernel_spec(kerneldir, 'jansclojurekernel', user=os.getenv('USER'))
-    
+
     print(' Done!')
     print('Cleaning up tmp files...', end="")
-    
+
     shutil.rmtree(kerneldir)
-    
+
     print(' Done!')
     print('For uninstall use: jupyter kernelspec uninstall jansclojurekernel')
-    
