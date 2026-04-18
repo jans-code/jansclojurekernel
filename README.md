@@ -2,7 +2,7 @@
 
 ![Logo](jansclojurekernel/logo-svg.svg)
 
-A jupyter kernel implementation of [clojure](https://clojure.org), this basic kernel is a WIP.
+A jupyter kernel implementation of [clojure](https://clojure.org).
 
 ## Dev Installation
 
