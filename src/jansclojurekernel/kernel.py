@@ -43,7 +43,7 @@ def code_valid(string):
     else:
         return False
 
-clojurewrapper = replwrap.REPLWrapper("clojure", "user=> ", None)
+clojurewrapper = replwrap.REPLWrapper("""clojure -M -e '(clojure.main/repl :prompt #(print "jansclojurekernel=> "))'""", "jansclojurekernel=> ", None)
 
 class jansclojurekernel(Kernel):
     implementation = 'IPython'
